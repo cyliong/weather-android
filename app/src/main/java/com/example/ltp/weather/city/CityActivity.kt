@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.ltp.weather.R
+import com.example.ltp.weather.WeatherApplication
 import kotlinx.android.synthetic.main.activity_city.*
 import kotlinx.android.synthetic.main.content_city.*
 
@@ -19,6 +20,10 @@ class CityActivity : AppCompatActivity() {
 
         val cityName = intent.getStringExtra(EXTRA_CITY)
         supportActionBar?.title = cityName
+
+        // Add city name to the recent list
+        val historyManager = (application as WeatherApplication).historyManager
+        historyManager.addCityNameWithCountry(cityName)
 
         viewModel.loadWeather(cityName)
 

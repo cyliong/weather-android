@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ltp.weather.R
+import com.example.ltp.weather.WeatherApplication
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
 
@@ -58,6 +59,12 @@ class HomeActivity : AppCompatActivity() {
             layoutManager = linearLayoutManager
             adapter = citiesAdapter
         }.addItemDecoration(dividerItemDecoration)
+
+        val historyManager = (application as WeatherApplication).historyManager
+        val recentList = historyManager.getRecentCities()
+        if (recentList.isNotEmpty()) {
+            citiesAdapter.reload(historyManager.getRecentCities())
+        }
     }
 
 }
