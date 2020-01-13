@@ -11,19 +11,28 @@ import com.example.ltp.weather.city.CityActivity
 import com.example.ltp.weather.model.City
 import kotlinx.android.synthetic.main.row_city.view.*
 
+private const val CITY_EMPTY = 1
+private const val CITY_LIST = 2
+
 class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     private var cities = listOf<City>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.row_city, parent, false))
+        val layout = if (viewType == CITY_EMPTY) R.layout.empty_city else R.layout.row_city
+        return ViewHolder(LayoutInflater
+            .from(parent.context).inflate(layout, parent, false), viewType)
     }
 
-    override fun getItemCount() = cities.size
+    override fun getItemViewType(position: Int) = if (cities.isEmpty()) CITY_EMPTY else CITY_LIST
+
+    // When the item is empty, need to return 1 in order to show the empty layout.
+    override fun getItemCount() = if (cities.isEmpty()) 1 else cities.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.textViewCity.text = getCityNameWithCountry(cities[position])
+        if (holder.itemViewType == CITY_LIST) {
+            holder.view.textViewCity.text = getCityNameWithCountry(cities[position])
+        }
     }
 
     fun reload(cities: List<City>) {
@@ -31,11 +40,16 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(val view: View, viewType: Int) : RecyclerView.ViewHolder(view) {
 
         init {
-            view.setOnClickListener {
-                navigateToCityScreen(view.context, getCityNameWithCountry(cities[adapterPosition]))
+            if (viewType == CITY_LIST) {
+                view.setOnClickListener {
+                    navigateToCityScreen(
+                        view.context,
+                        getCityNameWithCountry(cities[adapterPosition])
+                    )
+                }
             }
         }
 
