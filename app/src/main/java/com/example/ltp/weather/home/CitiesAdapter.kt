@@ -1,10 +1,13 @@
 package com.example.ltp.weather.home
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ltp.weather.R
+import com.example.ltp.weather.city.CityActivity
 import com.example.ltp.weather.model.City
 import kotlinx.android.synthetic.main.row_city.view.*
 
@@ -32,7 +35,7 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
         init {
             view.setOnClickListener {
-
+                navigateToCityScreen(view.context, getCityNameWithCountry(cities[adapterPosition]))
             }
         }
 
@@ -40,4 +43,10 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     private fun getCityNameWithCountry(city: City) = "${city.name}, ${city.country}"
 
+    private fun navigateToCityScreen(context: Context, cityName: String) {
+        val intent = Intent(context, CityActivity::class.java).apply {
+            putExtra(CityActivity.EXTRA_CITY, cityName)
+        }
+        context.startActivity(intent)
+    }
 }
