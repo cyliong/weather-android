@@ -38,7 +38,7 @@ class WeatherService(private val baseUrl: String) {
                 cityList.add(city)
             }
 
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             Log.e(TAG, e.toString())
         }
         return cityList
@@ -76,7 +76,7 @@ class WeatherService(private val baseUrl: String) {
 
             return Weather(iconUrl, humidity, description, temperature)
 
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             Log.e(TAG, e.toString())
         }
         return null
