@@ -5,7 +5,6 @@ import com.example.ltp.weather.API_KEY
 import com.example.ltp.weather.model.City
 import com.example.ltp.weather.model.Weather
 import org.json.JSONObject
-import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
