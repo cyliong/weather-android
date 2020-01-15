@@ -3,6 +3,7 @@ This is a simple weather app showcasing the implementation of various Android te
 - MVVM pattern with LiveData
 - Coroutines
 - Unit testing with JUnit
+- UI testing with Espresso
 
 ## Features
 - Search available cities by entering a city name
