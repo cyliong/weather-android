@@ -32,12 +32,14 @@
             android:id="@+id/textViewTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="..."
             android:textSize="80sp" />
 
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="..."
             android:textSize="24sp" />
 
         <LinearLayout
@@ -61,6 +63,7 @@
                 android:id="@+id/textViewHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="..."
                 android:textSize="18sp" />
         </LinearLayout>
 
