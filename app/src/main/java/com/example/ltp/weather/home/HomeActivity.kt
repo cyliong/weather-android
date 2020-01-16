@@ -11,15 +11,20 @@ import com.example.ltp.weather.R
 import com.example.ltp.weather.WeatherApplication
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
+import javax.inject.Inject
 
 private const val TAG = "HomeActivity"
 
 class HomeActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { HomeViewModel() }
+    @Inject
+    lateinit var viewModel: HomeViewModel
+
     private val citiesAdapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as WeatherApplication).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
@@ -60,10 +65,9 @@ class HomeActivity : AppCompatActivity() {
             adapter = citiesAdapter
         }.addItemDecoration(dividerItemDecoration)
 
-        val historyManager = (application as WeatherApplication).historyManager
-        val recentList = historyManager.getRecentCities()
+        val recentList = viewModel.getRecentCities()
         if (recentList.isNotEmpty()) {
-            citiesAdapter.reload(historyManager.getRecentCities())
+            citiesAdapter.reload(recentList)
         }
     }
 

@@ -1,6 +1,8 @@
 package com.example.ltp.weather.storage
 
 import com.example.ltp.weather.model.City
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val HISTORY_KEY = "recent_cities"
 private const val HISTORY_SEPARATOR = "|"
@@ -8,7 +10,8 @@ private const val HISTORY_SEPARATOR = "|"
 /**
  * Manager a list of recently viewed cities
  */
-class HistoryManager(private val storage: Storage) {
+@Singleton
+class HistoryManager @Inject constructor(private val storage: Storage) {
 
     val historySize = 10
 
@@ -27,16 +30,16 @@ class HistoryManager(private val storage: Storage) {
     }
 
     fun addCityNameWithCountry(name: String) {
-        val storedCityNames = getRecentCityNamesWithCountry()
+        val storedCityNames = getRecentCityNamesWithCountry().toMutableList()
+
+        // If the city has been stored previously, remove it from the list
+        val index = storedCityNames.lastIndexOf(name)
+        if (index != -1) {
+            storedCityNames.removeAt(index)
+        }
 
         val newCityNames = mutableListOf(name)
         newCityNames.addAll(storedCityNames)
-
-        // If the city has been stored previously, remove it from the list
-        val index = storedCityNames.indexOf(name)
-        if (index != -1) {
-            newCityNames.removeAt(index)
-        }
 
         // Remove the last city if exceed the allowed size
         if (newCityNames.size > historySize) {

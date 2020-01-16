@@ -6,10 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.ltp.weather.BASE_URL
 import com.example.ltp.weather.model.Weather
 import com.example.ltp.weather.network.WeatherService
+import com.example.ltp.weather.storage.HistoryManager
 import kotlinx.coroutines.*
 import java.net.URL
+import javax.inject.Inject
 
-class CityViewModel {
+class CityViewModel @Inject constructor(private val historyManager: HistoryManager) {
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + completableJob)
@@ -20,6 +22,9 @@ class CityViewModel {
     fun loadWeather(cityName: String) {
         coroutineScope.launch(Dispatchers.Main) {
             weatherData.value = getWeather(cityName)
+
+            // Add city name to the recent list
+            historyManager.addCityNameWithCountry(cityName)
         }
     }
 

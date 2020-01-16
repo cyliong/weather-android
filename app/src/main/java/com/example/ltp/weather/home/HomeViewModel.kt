@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.example.ltp.weather.BASE_URL
 import com.example.ltp.weather.model.City
 import com.example.ltp.weather.network.WeatherService
+import com.example.ltp.weather.storage.HistoryManager
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class HomeViewModel {
+class HomeViewModel @Inject constructor(private val historyManager: HistoryManager)  {
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + completableJob)
@@ -18,6 +20,8 @@ class HomeViewModel {
             cityData.value = getCities(name)
         }
     }
+
+    fun getRecentCities() = historyManager.getRecentCities()
 
     fun onDestroy() {
         coroutineScope.cancel()

@@ -1,13 +1,13 @@
 package com.example.ltp.weather
 
 import android.app.Application
-import com.example.ltp.weather.storage.HistoryManager
-import com.example.ltp.weather.storage.SharedPreferencesStorage
+import com.example.ltp.weather.di.AppComponent
+import com.example.ltp.weather.di.DaggerAppComponent
 
-class WeatherApplication : Application() {
+open class WeatherApplication : Application() {
 
-    val historyManager by lazy {
-        HistoryManager(SharedPreferencesStorage(this))
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.factory().create(applicationContext)
     }
 
 }

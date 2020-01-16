@@ -1,6 +1,7 @@
 # weather-android
 This is a simple weather app showcasing the implementation of various Android technologies and patterns, including:
 - MVVM pattern with LiveData
+- Dependency injection with Dagger
 - Coroutines
 - Unit testing with JUnit
 - UI testing with Espresso
