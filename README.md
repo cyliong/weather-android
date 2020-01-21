@@ -3,7 +3,7 @@ This is a simple weather app showcasing the implementation of various Android te
 - MVVM pattern with LiveData
 - Dependency injection with Dagger
 - Coroutines
-- Unit testing with JUnit
+- Unit testing with JUnit and Mockito
 - UI testing with Espresso
 
 ## Features
