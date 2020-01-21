@@ -1,7 +1,11 @@
 package com.example.ltp.weather.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -29,13 +33,14 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
-        imageButtonSearch.setOnClickListener {
-            val searchText = editTextCity.text.toString()
+        imageButtonSearch.setOnClickListener { onSearchCity(it) }
 
-            if (searchText.trim().isNotBlank()) {
-                viewModel.loadCities(searchText)
+        editTextCity.setOnEditorActionListener { view, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                onSearchCity(view)
+                true
             } else {
-                Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show()
+                false
             }
         }
 
@@ -69,6 +74,23 @@ class HomeActivity : AppCompatActivity() {
         if (recentList.isNotEmpty()) {
             citiesAdapter.reload(recentList)
         }
+    }
+
+    private fun onSearchCity(view: View) {
+        hideSoftKeyboard(view)
+
+        val searchText = editTextCity.text.toString().trim()
+
+        if (searchText.isNotBlank()) {
+            viewModel.loadCities(searchText)
+        } else {
+            Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun hideSoftKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }
