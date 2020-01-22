@@ -3,7 +3,6 @@ package com.example.ltp.weather.city
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
-import com.example.ltp.weather.BASE_URL
 import com.example.ltp.weather.model.Weather
 import com.example.ltp.weather.network.WeatherService
 import com.example.ltp.weather.storage.HistoryManager
@@ -11,7 +10,9 @@ import kotlinx.coroutines.*
 import java.net.URL
 import javax.inject.Inject
 
-class CityViewModel @Inject constructor(private val historyManager: HistoryManager) {
+class CityViewModel @Inject constructor(
+    private val historyManager: HistoryManager,
+    private val weatherService: WeatherService) {
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + completableJob)
@@ -40,7 +41,7 @@ class CityViewModel @Inject constructor(private val historyManager: HistoryManag
 
     private suspend fun getWeather(cityName: String) =
         withContext(Dispatchers.IO) {
-            return@withContext WeatherService(BASE_URL).getWeather(cityName)
+            return@withContext weatherService.getWeather(cityName)
         }
 
     private suspend fun getBitmapAsync(url: String): Bitmap =

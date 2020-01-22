@@ -7,10 +7,13 @@ import com.example.ltp.weather.model.Weather
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val TAG = "WeatherService"
 
-class WeatherService(private val baseUrl: String) {
+@Singleton
+class WeatherService @Inject constructor(private val baseUrl: String) {
 
     fun getCities(name: String): List<City> {
         val cityList = mutableListOf<City>()
