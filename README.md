@@ -12,7 +12,7 @@ This is a simple weather app showcasing the implementation of various Android te
 - 10 recently viewed cities will be remembered
 
 ## Requirements
-- Android Studio version 3.5 or higher
+- Android Studio version 3.6 or higher
 - Android 4.4 (API level 19) or higher
 - Kotlin 1.3 or higher
 
