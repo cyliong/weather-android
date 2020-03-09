@@ -1,6 +1,6 @@
 package com.example.ltp.weather.home
 
-import com.example.ltp.weather.network.WeatherService
+import com.example.ltp.weather.repository.WeatherRepository
 import com.example.ltp.weather.storage.HistoryManager
 import org.junit.Before
 import org.junit.Test
@@ -16,13 +16,13 @@ class HomeViewModelTest {
     private lateinit var mockHistoryManager: HistoryManager
 
     @Mock
-    private lateinit var mockWeatherService: WeatherService
+    private lateinit var mockWeatherRepository: WeatherRepository
 
     private lateinit var viewModel: HomeViewModel
 
     @Before
     fun setUp() {
-        viewModel = HomeViewModel(mockHistoryManager, mockWeatherService)
+        viewModel = HomeViewModel(mockHistoryManager, mockWeatherRepository)
     }
 
     @Test

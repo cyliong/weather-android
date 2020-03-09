@@ -2,7 +2,9 @@
 This is a simple weather app showcasing the implementation of various Android technologies and patterns, including:
 - MVVM pattern with LiveData
 - Dependency injection with Dagger
+- Networking with Retrofit and Gson
 - Coroutines
+- Repository pattern
 - Unit testing with JUnit and Mockito
 - UI testing with Espresso
 
@@ -17,4 +19,5 @@ This is a simple weather app showcasing the implementation of various Android te
 - Kotlin 1.3 or higher
 
 ## Setup
-Replace the API_KEY constant in Constants.kt with your own API key.
+1. Get your API key from [World Weather Online's developer portal](https://www.worldweatheronline.com/developer/).
+2. Replace the API_KEY constant in Constants.kt with your API key.
