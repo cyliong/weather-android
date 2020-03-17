@@ -15,7 +15,7 @@ This is a simple weather app showcasing the implementation of various Android te
 
 ## Requirements
 - Android Studio version 3.6 or higher
-- Android 4.4 (API level 19) or higher
+- Android 5.0 (API level 21) or higher
 - Kotlin 1.3 or higher
 
 ## Setup
