@@ -11,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ltp.weather.R
 import com.example.ltp.weather.WeatherApplication
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.content_home.*
+import com.example.ltp.weather.databinding.ActivityHomeBinding
 import javax.inject.Inject
 
 private const val TAG = "HomeActivity"
@@ -24,23 +22,27 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: HomeViewModel
 
+    private lateinit var binding: ActivityHomeBinding
+
     private val citiesAdapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (applicationContext as WeatherApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-        setSupportActionBar(toolbar)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        imageButtonSearch.setOnClickListener { onSearchCity(it) }
-
-        editTextCity.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                onSearchCity(view)
-                true
-            } else {
-                false
+        binding.contentHome.apply {
+            imageButtonSearch.setOnClickListener { onSearchCity(it) }
+            editTextCity.setOnEditorActionListener { view, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    onSearchCity(view)
+                    true
+                } else {
+                    false
+                }
             }
         }
 
@@ -62,10 +64,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
+        val recyclerView = binding.contentHome.recyclerViewCities
         val linearLayoutManager = LinearLayoutManager(this)
-        val dividerItemDecoration = DividerItemDecoration(recyclerViewCities.context,
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context,
             linearLayoutManager.orientation)
-        recyclerViewCities.apply {
+        recyclerView.apply {
             layoutManager = linearLayoutManager
             adapter = citiesAdapter
         }.addItemDecoration(dividerItemDecoration)
@@ -79,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
     private fun onSearchCity(view: View) {
         hideSoftKeyboard(view)
 
-        val searchText = editTextCity.text.toString().trim()
+        val searchText = binding.contentHome.editTextCity.text.toString().trim()
 
         if (searchText.isNotBlank()) {
             viewModel.loadCities(searchText)

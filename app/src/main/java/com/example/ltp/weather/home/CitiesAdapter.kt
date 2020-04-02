@@ -3,13 +3,13 @@ package com.example.ltp.weather.home
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ltp.weather.R
+import androidx.viewbinding.ViewBinding
 import com.example.ltp.weather.city.CityActivity
+import com.example.ltp.weather.databinding.EmptyCityBinding
+import com.example.ltp.weather.databinding.RowCityBinding
 import com.example.ltp.weather.model.City
-import kotlinx.android.synthetic.main.row_city.view.*
 
 private const val CITY_EMPTY = 1
 private const val CITY_LIST = 2
@@ -19,9 +19,20 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
     private var cities = listOf<City>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layout = if (viewType == CITY_EMPTY) R.layout.empty_city else R.layout.row_city
-        return ViewHolder(LayoutInflater
-            .from(parent.context).inflate(layout, parent, false), viewType)
+        val binding = if (viewType == CITY_EMPTY) {
+            EmptyCityBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        } else {
+            RowCityBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        }
+        return ViewHolder(binding)
     }
 
     override fun getItemViewType(position: Int) = if (cities.isEmpty()) CITY_EMPTY else CITY_LIST
@@ -31,7 +42,7 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (holder.itemViewType == CITY_LIST) {
-            holder.view.textViewCity.text = getCityNameWithCountry(cities[position])
+            holder.bind(cities[position])
         }
     }
 
@@ -40,16 +51,25 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val view: View, viewType: Int) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val binding: ViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private var city: City? = null
 
         init {
-            if (viewType == CITY_LIST) {
-                view.setOnClickListener {
-                    navigateToCityScreen(
-                        view.context,
-                        getCityNameWithCountry(cities[adapterPosition])
-                    )
+            if (binding is RowCityBinding) {
+                binding.root.setOnClickListener {
+                    city?.let {
+                        navigateToCityScreen(binding.root.context, getCityNameWithCountry(it))
+                    }
                 }
+            }
+        }
+
+        fun bind(city: City) {
+            if (binding is RowCityBinding) {
+                this.city = city
+                binding.textViewCity.text = getCityNameWithCountry(city)
             }
         }
 

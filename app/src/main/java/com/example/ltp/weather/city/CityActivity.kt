@@ -3,10 +3,8 @@ package com.example.ltp.weather.city
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.ltp.weather.R
 import com.example.ltp.weather.WeatherApplication
-import kotlinx.android.synthetic.main.activity_city.*
-import kotlinx.android.synthetic.main.content_city.*
+import com.example.ltp.weather.databinding.ActivityCityBinding
 import javax.inject.Inject
 
 class CityActivity : AppCompatActivity() {
@@ -14,12 +12,15 @@ class CityActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: CityViewModel
 
+    private lateinit var binding: ActivityCityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (applicationContext as WeatherApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_city)
-        setSupportActionBar(toolbar)
+        binding = ActivityCityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val cityName = intent.getStringExtra(EXTRA_CITY)
@@ -31,12 +32,14 @@ class CityActivity : AppCompatActivity() {
             val imageUrl = it.iconUrl
             viewModel.loadWeatherImage(imageUrl)
 
-            textViewTemperature.text = it.temperature.toString() + "°c"
-            textViewDescription.text = it.description
-            textViewHumidity.text = it.humidity.toInt().toString() + "%"
+            binding.contentCity.apply {
+                textViewTemperature.text = it.temperature.toString() + "°c"
+                textViewDescription.text = it.description
+                textViewHumidity.text = it.humidity.toInt().toString() + "%"
+            }
         })
         viewModel.weatherIconData.observe(this, Observer {
-            imageViewWeather.setImageBitmap(it)
+            binding.contentCity.imageViewWeather.setImageBitmap(it)
         })
     }
 
