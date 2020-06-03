@@ -23,7 +23,7 @@ class CityActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val cityName = intent.getStringExtra(EXTRA_CITY)
+        val cityName = intent.getStringExtra(EXTRA_CITY) ?: ""
         supportActionBar?.title = cityName
 
         viewModel.loadWeather(cityName)
