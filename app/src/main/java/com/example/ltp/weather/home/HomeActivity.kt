@@ -26,9 +26,10 @@ class HomeActivity : AppCompatActivity() {
     private val citiesAdapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         (applicationContext as WeatherApplication).appComponent.inject(viewModel)
 
-        super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)

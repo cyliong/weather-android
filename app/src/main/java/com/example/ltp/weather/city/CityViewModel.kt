@@ -3,6 +3,7 @@ package com.example.ltp.weather.city
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.ltp.weather.model.Weather
 import com.example.ltp.weather.repository.WeatherRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.*
 import java.net.URL
 import javax.inject.Inject
 
-class CityViewModel : ViewModel() {
+class CityViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     @Inject
     lateinit var historyManager: HistoryManager

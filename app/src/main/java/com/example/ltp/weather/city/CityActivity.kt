@@ -14,9 +14,10 @@ class CityActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         (applicationContext as WeatherApplication).appComponent.inject(viewModel)
 
-        super.onCreate(savedInstanceState)
         binding = ActivityCityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
