@@ -1,6 +1,6 @@
 # weather-android
 This is a simple weather app showcasing the implementation of various Android technologies and patterns, including:
-- MVVM pattern with LiveData
+- MVVM pattern with `ViewModel` and `LiveData`
 - View Binding
 - Dependency injection with Dagger
 - Networking with Retrofit and Gson
