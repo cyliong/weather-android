@@ -7,27 +7,26 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityHomeBinding
-import javax.inject.Inject
 
 private const val TAG = "HomeActivity"
 
 class HomeActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var binding: ActivityHomeBinding
 
     private val citiesAdapter = CitiesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (applicationContext as WeatherApplication).appComponent.inject(this)
+        (applicationContext as WeatherApplication).appComponent.inject(viewModel)
 
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -56,11 +55,6 @@ class HomeActivity : AppCompatActivity() {
         })
 
         setupRecyclerView()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.onDestroy()
     }
 
     private fun setupRecyclerView() {

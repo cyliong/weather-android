@@ -1,21 +1,20 @@
 package com.example.ltp.weather.city
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
-import javax.inject.Inject
 
 class CityActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: CityViewModel
+    private val viewModel: CityViewModel by viewModels()
 
     private lateinit var binding: ActivityCityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (applicationContext as WeatherApplication).appComponent.inject(this)
+        (applicationContext as WeatherApplication).appComponent.inject(viewModel)
 
         super.onCreate(savedInstanceState)
         binding = ActivityCityBinding.inflate(layoutInflater)
@@ -41,11 +40,6 @@ class CityActivity : AppCompatActivity() {
         viewModel.weatherIconData.observe(this, Observer {
             binding.contentCity.imageViewWeather.setImageBitmap(it)
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewModel.onDestroy()
     }
 
     companion object {

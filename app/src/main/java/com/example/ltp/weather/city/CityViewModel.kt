@@ -3,6 +3,7 @@ package com.example.ltp.weather.city
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.ltp.weather.model.Weather
 import com.example.ltp.weather.repository.WeatherRepository
 import com.example.ltp.weather.storage.HistoryManager
@@ -10,10 +11,13 @@ import kotlinx.coroutines.*
 import java.net.URL
 import javax.inject.Inject
 
-class CityViewModel @Inject constructor(
-    private val historyManager: HistoryManager,
-    private val weatherRepository: WeatherRepository
-) {
+class CityViewModel : ViewModel() {
+
+    @Inject
+    lateinit var historyManager: HistoryManager
+
+    @Inject
+    lateinit var weatherRepository: WeatherRepository
 
     private val completableJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + completableJob)
@@ -36,8 +40,9 @@ class CityViewModel @Inject constructor(
         }
     }
 
-    fun onDestroy() {
+    override fun onCleared() {
         coroutineScope.cancel()
+        super.onCleared()
     }
 
     private suspend fun getWeather(cityName: String) =
