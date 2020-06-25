@@ -1,5 +1,6 @@
 package com.example.ltp.weather.home
 
+import androidx.lifecycle.SavedStateHandle
 import com.example.ltp.weather.repository.WeatherRepository
 import com.example.ltp.weather.storage.HistoryManager
 import org.junit.Before
@@ -13,6 +14,9 @@ import org.mockito.junit.MockitoJUnitRunner
 class HomeViewModelTest {
 
     @Mock
+    private lateinit var mockSavedStateHandle: SavedStateHandle
+
+    @Mock
     private lateinit var mockHistoryManager: HistoryManager
 
     @Mock
@@ -22,7 +26,10 @@ class HomeViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = HomeViewModel(mockHistoryManager, mockWeatherRepository)
+        viewModel = HomeViewModel(mockSavedStateHandle).apply {
+            historyManager = mockHistoryManager
+            weatherRepository = mockWeatherRepository
+        }
     }
 
     @Test
