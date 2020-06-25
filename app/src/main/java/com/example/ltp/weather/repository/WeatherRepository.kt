@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WeatherRepository @Inject constructor(private val baseUrl: String) {
+class WeatherRepository @Inject constructor(baseUrl: String) {
 
     private val weatherApiService: WeatherApiService
 
