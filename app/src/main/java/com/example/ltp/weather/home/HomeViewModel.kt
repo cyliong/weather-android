@@ -7,9 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.ltp.weather.model.City
 import com.example.ltp.weather.repository.WeatherRepository
 import com.example.ltp.weather.storage.HistoryManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeViewModel(private val state: SavedStateHandle) : ViewModel() {
@@ -23,14 +21,9 @@ class HomeViewModel(private val state: SavedStateHandle) : ViewModel() {
     val cityData = MutableLiveData<List<City>>()
 
     fun loadCities(name: String) = viewModelScope.launch {
-        cityData.value = getCities(name)
+        cityData.value = weatherRepository.getCities(name)
     }
 
     fun getRecentCities() = historyManager.getRecentCities()
-
-    private suspend fun getCities(name: String) =
-        withContext(Dispatchers.IO) {
-            return@withContext weatherRepository.getCities(name)
-        }
 
 }

@@ -27,7 +27,7 @@ class CityViewModel(private val state: SavedStateHandle) : ViewModel() {
     val weatherIconData = MutableLiveData<Bitmap>()
 
     fun loadWeather(cityName: String) = viewModelScope.launch {
-        weatherData.value = getWeather(cityName)
+        weatherData.value = weatherRepository.getWeather(cityName)
 
         // Add city name to the recent list
         historyManager.addCityNameWithCountry(cityName)
@@ -36,11 +36,6 @@ class CityViewModel(private val state: SavedStateHandle) : ViewModel() {
     fun loadWeatherImage(imageUrl: String) = viewModelScope.launch {
         weatherIconData.value = getBitmapAsync(imageUrl)
     }
-
-    private suspend fun getWeather(cityName: String) =
-        withContext(Dispatchers.IO) {
-            return@withContext weatherRepository.getWeather(cityName)
-        }
 
     private suspend fun getBitmapAsync(url: String): Bitmap =
         withContext(Dispatchers.IO) {

@@ -66,10 +66,8 @@ class WeatherRepository @Inject constructor(private val baseUrl: String) {
         weatherApiService = retrofit.create(WeatherApiService::class.java)
     }
 
-    fun getCities(name: String): List<City> =
-        weatherApiService.getCities(name).execute().body() ?: emptyList()
+    suspend fun getCities(name: String) = weatherApiService.getCities(name)
 
-    fun getWeather(cityName: String): Weather? =
-        weatherApiService.getWeather(cityName).execute().body()
+    suspend fun getWeather(cityName: String) = weatherApiService.getWeather(cityName)
 
 }
