@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
+import com.squareup.picasso.Picasso
 
 class CityActivity : AppCompatActivity() {
 
@@ -32,9 +33,7 @@ class CityActivity : AppCompatActivity() {
                 textViewDescription.text = weather.description
                 textViewHumidity.text = weather.humidity.toInt().toString() + "%"
             }
-            viewModel.getWeatherImage(weather.iconUrl).observe(this, Observer { bitmap ->
-                binding.contentCity.imageViewWeather.setImageBitmap(bitmap)
-            })
+            Picasso.get().load(weather.iconUrl).into(binding.contentCity.imageViewWeather)
         })
     }
 
