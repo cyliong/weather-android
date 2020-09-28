@@ -3,7 +3,6 @@ package com.example.ltp.weather.city
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
 import com.squareup.picasso.Picasso
@@ -27,7 +26,7 @@ class CityActivity : AppCompatActivity() {
         val cityName = intent.getStringExtra(EXTRA_CITY) ?: ""
         supportActionBar?.title = cityName
 
-        viewModel.getWeather(cityName).observe(this, Observer { weather ->
+        viewModel.getWeather(cityName).observe(this, { weather ->
             binding.contentCity.apply {
                 textViewTemperature.text = weather.temperature.toString() + "°c"
                 textViewDescription.text = weather.description
