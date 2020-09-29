@@ -1,11 +1,14 @@
 # weather-android
-This is a simple weather app showcasing the implementation of various Android technologies and patterns, including:
-- MVVM pattern with Android Architecture Components (`ViewModel` and `LiveData`)
+This is a simple weather app showcasing the implementation of 
+various Android technologies and patterns, including:
+- MVVM pattern with Android Architecture Components 
+  (`ViewModel` and `LiveData`)
 - View Binding
 - Dependency injection with Dagger
 - Networking with Retrofit and Gson
 - Coroutines
 - Repository pattern
+- Display images from the internet using Picasso
 - Unit testing with JUnit and Mockito
 - UI testing with Espresso
 
