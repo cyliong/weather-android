@@ -32,7 +32,7 @@ class WeatherRepository @Inject constructor(baseUrl: String) {
             return@JsonDeserializer cities
         }
 
-        val weatherDeserializer = JsonDeserializer<Weather> {
+        val weatherDeserializer = JsonDeserializer {
                 json, _, _ ->
             val currentCondition = json.asJsonObject
                 .get("data").asJsonObject
