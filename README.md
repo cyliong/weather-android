@@ -8,7 +8,7 @@ various Android technologies and patterns, including:
 - Networking with Retrofit and Gson
 - Coroutines
 - Repository pattern
-- Display images from the internet using Picasso
+- Display images from the internet using Glide
 - Unit testing with JUnit and Mockito
 - UI testing with Espresso
 
