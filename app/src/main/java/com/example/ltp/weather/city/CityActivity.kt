@@ -3,9 +3,9 @@ package com.example.ltp.weather.city
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
-import com.squareup.picasso.Picasso
 
 class CityActivity : AppCompatActivity() {
 
@@ -32,7 +32,7 @@ class CityActivity : AppCompatActivity() {
                 textViewDescription.text = weather.description
                 textViewHumidity.text = weather.humidity.toInt().toString() + "%"
             }
-            Picasso.get().load(weather.iconUrl).into(binding.contentCity.imageViewWeather)
+            Glide.with(this).load(weather.iconUrl).into(binding.contentCity.imageViewWeather)
         })
     }
 
