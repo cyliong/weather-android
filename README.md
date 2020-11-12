@@ -18,9 +18,9 @@ various Android technologies and patterns, including:
 - 10 recently viewed cities will be remembered
 
 ## Requirements
-- Android Studio version 4.1.0 or higher
+- Android Studio version 4.1.1 or higher
 - Android 5.0 (API level 21) or higher
-- Kotlin 1.3 or higher
+- Kotlin 1.4 or higher
 
 ## Setup
 1. Get your API key from [World Weather Online's developer portal](https://www.worldweatheronline.com/developer/).
