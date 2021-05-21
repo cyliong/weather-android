@@ -18,7 +18,7 @@ various Android technologies and patterns, including:
 - 10 recently viewed cities will be remembered
 
 ## Requirements
-- Android Studio version 4.2 or higher
+- Android Studio version 4.2.1 or higher
 - Android 5.0 (API level 21) or higher
 - Kotlin 1.4 or higher
 
