@@ -37,7 +37,7 @@ configurations.all {
 }
 
 dependencies {
-    def coroutines_version = '1.4.3'
+    def coroutines_version = '1.5.0'
     def lifecycle_version = '2.3.1'
     def espresso_version = '3.3.0'
     def dagger_version = '2.35.1'
