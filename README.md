@@ -20,7 +20,7 @@ various Android technologies and patterns, including:
 ## Requirements
 - Android Studio version 4.2.1 or higher
 - Android 5.0 (API level 21) or higher
-- Kotlin 1.4 or higher
+- Kotlin 1.5 or higher
 
 ## Setup
 1. Get your API key from 
