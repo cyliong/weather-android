@@ -1,9 +1,10 @@
 package com.example.ltp.weather.storage
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class SharedPreferencesStorage @Inject constructor(context: Context) : Storage {
+class SharedPreferencesStorage @Inject constructor(@ApplicationContext context: Context) : Storage {
 
     private val sharedPreferences = context
         .getSharedPreferences("Weather", Context.MODE_PRIVATE)
