@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.ltp.weather.R
-import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +17,6 @@ class CityActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        (applicationContext as WeatherApplication).appComponent.inject(viewModel)
 
         binding = ActivityCityBinding.inflate(layoutInflater)
         setContentView(binding.root)
