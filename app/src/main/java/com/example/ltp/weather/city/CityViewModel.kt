@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.ltp.weather.repository.WeatherRepository
 import com.example.ltp.weather.storage.HistoryManager
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class CityViewModel(private val state: SavedStateHandle) : ViewModel() {
+@HiltViewModel
+class CityViewModel @Inject constructor(private val state: SavedStateHandle) : ViewModel() {
 
     @Inject
     lateinit var historyManager: HistoryManager
