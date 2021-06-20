@@ -7,7 +7,9 @@ import com.bumptech.glide.Glide
 import com.example.ltp.weather.R
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityCityBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CityActivity : AppCompatActivity() {
 
     private val viewModel: CityViewModel by viewModels()

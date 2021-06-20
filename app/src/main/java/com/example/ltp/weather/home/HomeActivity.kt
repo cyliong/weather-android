@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ltp.weather.WeatherApplication
 import com.example.ltp.weather.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "HomeActivity"
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
