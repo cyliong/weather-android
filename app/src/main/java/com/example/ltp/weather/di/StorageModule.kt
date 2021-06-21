@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class StorageModule {
 
     @Binds
-    abstract fun provideStorage(storage: SharedPreferencesStorage): Storage
+    abstract fun bindStorage(storage: SharedPreferencesStorage): Storage
 
 }
