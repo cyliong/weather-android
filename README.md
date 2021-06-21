@@ -4,7 +4,7 @@ various Android technologies and patterns, including:
 - MVVM pattern with Android Architecture Components 
   (`ViewModel` and `LiveData`)
 - View Binding
-- Dependency injection with Dagger
+- Dependency injection with Hilt (migrated from Dagger)
 - Networking with Retrofit and Gson
 - Coroutines
 - Repository pattern
