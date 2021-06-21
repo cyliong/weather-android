@@ -42,7 +42,6 @@ dependencies {
     def coroutines_version = '1.5.0'
     def lifecycle_version = '2.3.1'
     def espresso_version = '3.3.0'
-    def dagger_version = '2.37'
     def retrofit_version = '2.9.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -63,9 +62,6 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
-
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
