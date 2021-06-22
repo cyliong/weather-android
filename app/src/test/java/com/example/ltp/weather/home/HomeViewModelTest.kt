@@ -26,10 +26,7 @@ class HomeViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = HomeViewModel(mockSavedStateHandle).apply {
-            historyManager = mockHistoryManager
-            weatherRepository = mockWeatherRepository
-        }
+        viewModel = HomeViewModel(mockSavedStateHandle, mockHistoryManager, mockWeatherRepository)
     }
 
     @Test
