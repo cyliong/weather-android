@@ -9,13 +9,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CityViewModel @Inject constructor(private val state: SavedStateHandle) : ViewModel() {
-
-    @Inject
-    lateinit var historyManager: HistoryManager
-
-    @Inject
-    lateinit var weatherRepository: WeatherRepository
+class CityViewModel @Inject constructor(
+    private val state: SavedStateHandle,
+    private val historyManager: HistoryManager,
+    private val weatherRepository: WeatherRepository
+) : ViewModel() {
 
     fun getWeather(cityName: String) = liveData {
         val weather = weatherRepository.getWeather(cityName)

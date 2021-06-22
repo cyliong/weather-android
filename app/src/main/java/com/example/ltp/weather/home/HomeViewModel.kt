@@ -12,13 +12,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val state: SavedStateHandle) : ViewModel() {
-
-    @Inject
-    lateinit var historyManager: HistoryManager
-
-    @Inject
-    lateinit var weatherRepository: WeatherRepository
+class HomeViewModel @Inject constructor(
+    private val state: SavedStateHandle,
+    private val historyManager: HistoryManager,
+    private val weatherRepository: WeatherRepository
+) : ViewModel() {
 
     val cityData = MutableLiveData<List<City>>()
 
