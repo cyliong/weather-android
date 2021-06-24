@@ -32,6 +32,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 configurations.all {
@@ -75,6 +80,7 @@ dependencies {
     testImplementation "androidx.test.ext:junit-ktx:$androidx_test_ext_kotlin_runner_version"
     testImplementation "org.mockito:mockito-core:3.11.1"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    testImplementation 'org.robolectric:robolectric:4.5.1'
 
     androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
     androidTestImplementation "androidx.test:core-ktx:$androidx_test_core_version"
