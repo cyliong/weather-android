@@ -9,7 +9,7 @@ various Android technologies and patterns, including:
 - Coroutines
 - Repository pattern
 - Display images from the internet using Glide
-- Unit testing with JUnit and Mockito
+- Unit testing with JUnit, Mockito and Robolectric
 - UI testing with Espresso
 
 ## Features
