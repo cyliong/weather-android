@@ -18,7 +18,7 @@ various Android technologies and patterns, including:
 - 10 recently viewed cities will be remembered
 
 ## Requirements
-- Android Studio version 4.2.2 or higher
+- Android Studio Arctic Fox | 2020.3.1 or newer
 - Android 5.0 (API level 21) or higher
 - Kotlin 1.5 or higher
 
