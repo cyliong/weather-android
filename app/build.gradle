@@ -78,7 +78,7 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation "androidx.test:core-ktx:$androidx_test_core_version"
     testImplementation "androidx.test.ext:junit-ktx:$androidx_test_ext_junit_version"
-    testImplementation "org.mockito:mockito-core:3.12.0"
+    testImplementation "org.mockito:mockito-core:3.12.2"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation 'org.robolectric:robolectric:4.6.1'
 
