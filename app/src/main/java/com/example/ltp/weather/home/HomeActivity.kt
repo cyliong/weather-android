@@ -75,12 +75,18 @@ class HomeActivity : AppCompatActivity() {
     private fun onSearchCity(view: View) {
         hideSoftKeyboard(view)
 
-        val searchText = binding.contentHome.editTextCity.text.toString().trim()
-
-        if (searchText.isNotBlank()) {
-            viewModel.loadCities(searchText)
-        } else {
-            Toast.makeText(this, "Please enter a city name", Toast.LENGTH_SHORT).show()
+        with(binding.contentHome.editTextCity.text) {
+            if (isNotBlank()) {
+                viewModel.loadCities(toString().trim())
+            } else {
+                Toast
+                    .makeText(
+                        this@HomeActivity,
+                        "Please enter a city name",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
         }
     }
 
