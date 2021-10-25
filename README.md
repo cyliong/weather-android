@@ -25,4 +25,4 @@ various Android technologies and patterns, including:
 ## Setup
 1. Get your API key from 
    [World Weather Online's developer portal](https://www.worldweatheronline.com/developer/).
-2. Replace the API_KEY constant in Constants.kt with your API key.
+2. Replace the `API_KEY` constant in `Constants.kt` with your API key.
