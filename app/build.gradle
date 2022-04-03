@@ -73,7 +73,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
 
     testImplementation "junit:junit:$junit_version"
     testImplementation "androidx.test:core-ktx:$androidx_test_core_version"
